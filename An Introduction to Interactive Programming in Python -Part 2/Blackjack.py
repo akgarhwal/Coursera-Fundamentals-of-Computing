@@ -224,7 +224,16 @@ frame.add_button("Deal", deal, 200)
 frame.add_button("Hit",  hit, 200)
 frame.add_button("Stand", stand, 200)
 frame.set_draw_handler(draw)
-
+frame.add_label("Blackjack game!", 200)
+frame.add_label("", 200)
+frame.add_label("Try to hit 21 but don't surpass it!", 210)
+frame.add_label("The dealer wins ties.", 200)
+frame.add_label("Don't deal before standing!", 200)
+frame.add_label("", 200)
+frame.add_label("Values of the cards:", 200)
+frame.add_label("A - 1 or 11", 200)
+frame.add_label("From 2 to 9 - Number", 200)
+frame.add_label("10 and figures - 10", 200)
 
 # get things rolling
 deal()
