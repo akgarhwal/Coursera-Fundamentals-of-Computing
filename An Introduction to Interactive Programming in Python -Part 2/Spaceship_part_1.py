@@ -1,7 +1,6 @@
 #__akgarhwal__
-#Link : http://www.codeskulptor.org/#user44_fhgP4x2t6nvEb3L.py
+#Link : http://www.codeskulptor.org/#user44_2sHosHn90zbA1p5.py
 # Game : Spaceship - Setup
-
 # program template for Spaceship
 import simplegui
 import math
@@ -10,6 +9,8 @@ import random
 # globals for user interface
 WIDTH = 800
 HEIGHT = 600
+FRICTION = 0.92
+THRUST = 1
 score = 0
 lives = 3
 time = 0
@@ -120,11 +121,11 @@ class Ship:
         
         forward = angle_to_vector(self.angle)
         if self.thrust:
-            self.vel[0] += forward[0] 
-            self.vel[1] += forward[1]
+            self.vel[0] += THRUST * forward[0] 
+            self.vel[1] += THRUST * forward[1]
             
-        self.vel[0] *= (1-0.08)
-        self.vel[1] *= (1-0.08)
+        self.vel[0] *= FRICTION
+        self.vel[1] *= FRICTION
         self.pos[0] %= WIDTH
         self.pos[1] %= HEIGHT
         
@@ -145,9 +146,9 @@ class Ship:
     
     def shoot(self):
         global a_missile
-        pos = self.pos
         forward = angle_to_vector(self.angle)
-        vel = [self.vel[0]+3*forward[0], self.vel[1]+3*forward[1]]
+        pos = [self.pos[0] + self.radius*forward[0], self.pos[1] + self.radius*forward[1]]
+        vel = [self.vel[0]+5*forward[0], self.vel[1]+5*forward[1]]
         a_missile = Sprite(pos, vel, 0, 0, missile_image, missile_info, missile_sound)
 
         
