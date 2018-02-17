@@ -1,5 +1,5 @@
 # __akgarhwal__
-# link : http://www.codeskulptor.org/#user44_iJPtWFsszOB48ZT.py
+# link : http://www.codeskulptor.org/#user44_XpCzRsDYz3toI9W.py
 # Game : Spaceship
 
 # implementation of Spaceship - program template for RiceRocks
@@ -14,6 +14,9 @@ score = 0
 lives = 3
 time = 0
 started = False
+rock_group = set()
+missile_group = set()
+explosion_group = set()
 
 class ImageInfo:
     def __init__(self, center, size, radius = 0, lifespan = None, animated = False):
@@ -189,7 +192,13 @@ class Sprite:
         return self.radius
     
     def draw(self, canvas):
-        canvas.draw_image(self.image, self.image_center, self.image_size,
+        if self.animated:
+            offset = self.age * self.image_size[0]
+            new_center = [self.image_center[0] + offset, self.image_center[1]]
+            canvas.draw_image(self.image, new_center, self.image_size,
+                          self.pos, self.image_size, self.angle)
+        else:
+            canvas.draw_image(self.image, self.image_center, self.image_size,
                           self.pos, self.image_size, self.angle)
 
     def update(self):
@@ -268,11 +277,10 @@ def draw(canvas):
     #a_rock.draw(canvas)
     #a_missile.draw(canvas)
     
-    #call for rock group
+    #call for group
     process_sprite_group(canvas,rock_group)
-    
-    #call for missile group
     process_sprite_group(canvas,missile_group)
+    process_sprite_group(canvas,explosion_group)
     # update ship and sprites
     my_ship.update()
     #a_rock.update()
@@ -307,6 +315,10 @@ def group_collide(group,other_object):
     for rock in set(group):
         if rock.collide(other_object):
             group.remove(rock)
+            new_explosion = Sprite(rock.pos, [0, 0], 0, 0, explosion_image, explosion_info)
+            explosion_group.add(new_explosion)
+            explosion_sound.rewind()
+            explosion_sound.play()
             return True
     return False
 #a final helper function group_group_collide that takes two groups of objects as input. 
@@ -346,8 +358,6 @@ my_ship = Ship([WIDTH / 2, HEIGHT / 2], [0, 0], 0, ship_image, ship_info)
 #a_rock = Sprite([WIDTH / 3, HEIGHT / 3], [1, 1], 0, .1, asteroid_image, asteroid_info)
 #a_missile = Sprite([2 * WIDTH / 3, 2 * HEIGHT / 3], [-1,1], 0, 0, missile_image, missile_info, missile_sound)
 
-rock_group = set()
-missile_group = set()
 
 # register handlers
 frame.set_keyup_handler(keyup)
@@ -360,3 +370,4 @@ timer = simplegui.create_timer(1000.0, rock_spawner)
 # get things rolling
 timer.start()
 frame.start()
+
