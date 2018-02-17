@@ -1,3 +1,7 @@
+#__akgarhwal__
+#Link : http://www.codeskulptor.org/#user44_fhgP4x2t6nvEb3L.py
+# Game : Spaceship - Setup
+
 # program template for Spaceship
 import simplegui
 import math
@@ -118,8 +122,9 @@ class Ship:
         if self.thrust:
             self.vel[0] += forward[0] 
             self.vel[1] += forward[1]
-        self.vel[0] *= (1-0.1)
-        self.vel[1] *= (1-0.1)
+            
+        self.vel[0] *= (1-0.08)
+        self.vel[1] *= (1-0.08)
         self.pos[0] %= WIDTH
         self.pos[1] %= HEIGHT
         
@@ -137,7 +142,15 @@ class Ship:
         else:
             ship_thrust_sound.play()
             self.thrust = True
-            
+    
+    def shoot(self):
+        global a_missile
+        pos = self.pos
+        forward = angle_to_vector(self.angle)
+        vel = [self.vel[0]+3*forward[0], self.vel[1]+3*forward[1]]
+        a_missile = Sprite(pos, vel, 0, 0, missile_image, missile_info, missile_sound)
+
+        
     
 # Sprite class
 class Sprite:
@@ -158,10 +171,13 @@ class Sprite:
             sound.play()
    
     def draw(self, canvas):
-        canvas.draw_circle(self.pos, self.radius, 1, "Red", "Red")
+        canvas.draw_image(self.image,self.image_center,self.image_size,self.pos,self.image_size,self.angle)
     
     def update(self):
-        pass        
+        self.pos[0] += self.vel[0]
+        self.pos[1] += self.vel[1]
+        self.angle += self.angle_vel
+             
     
     
            
@@ -176,7 +192,9 @@ def draw(canvas):
     canvas.draw_image(nebula_image, nebula_info.get_center(), nebula_info.get_size(), [WIDTH / 2, HEIGHT / 2], [WIDTH, HEIGHT])
     canvas.draw_image(debris_image, center, size, (wtime - WIDTH / 2, HEIGHT / 2), (WIDTH, HEIGHT))
     canvas.draw_image(debris_image, center, size, (wtime + WIDTH / 2, HEIGHT / 2), (WIDTH, HEIGHT))
-
+    canvas.draw_text('Lives: '+str(lives), [30, 50], 40, 'Green')
+    canvas.draw_text('Score: '+str(score), [WIDTH-180, 50], 40, 'Red')
+    
     # draw ship and sprites
     my_ship.draw(canvas)
     a_rock.draw(canvas)
@@ -189,7 +207,11 @@ def draw(canvas):
             
 # timer handler that spawns a rock    
 def rock_spawner():
-    pass
+    global a_rock
+    pos = [random.randrange((WIDTH/10)*2,(WIDTH/10)*8),random.randrange((WIDTH/10)*2,(WIDTH/10)*8)]
+    vel = [random.randrange(-10,10)/10.0,random.randrange(-10,10)/10.0]
+    angle_vel = random.randrange(0,10)/100.0
+    a_rock = Sprite(pos,vel, 0, angle_vel, asteroid_image, asteroid_info)
     
 # key handler
 def key_handler_down(key):
@@ -198,8 +220,8 @@ def key_handler_down(key):
         my_ship.increment_angle_vel()
     elif key==simplegui.KEY_MAP["left"]:
         my_ship.decrement_angle_vel()
-    elif key==simplegui.KEY_MAP["down"]:
-        pass
+    elif key==simplegui.KEY_MAP["space"]:
+        my_ship.shoot()
     elif key==simplegui.KEY_MAP["up"]:
         my_ship.toggle_thrust()
 
@@ -209,8 +231,6 @@ def key_handler_up(key):
         my_ship.decrement_angle_vel()
     elif key==simplegui.KEY_MAP["left"]:
         my_ship.increment_angle_vel()
-    elif key==simplegui.KEY_MAP["down"]:
-        pass
     elif key==simplegui.KEY_MAP["up"]:
         my_ship.toggle_thrust()
 
@@ -221,13 +241,13 @@ frame.set_keyup_handler(key_handler_up)
 
 # initialize ship and two sprites
 my_ship = Ship([WIDTH / 2, HEIGHT / 2], [0, 0], 0, ship_image, ship_info)
-a_rock = Sprite([WIDTH / 3, HEIGHT / 3], [1, 1], 0, 0, asteroid_image, asteroid_info)
+a_rock = Sprite([WIDTH / 3, HEIGHT / 3], [1, 1], 0, 0.02, asteroid_image, asteroid_info)
 a_missile = Sprite([2 * WIDTH / 3, 2 * HEIGHT / 3], [-1,1], 0, 0, missile_image, missile_info, missile_sound)
 
 # register handlers
 frame.set_draw_handler(draw)
 
-timer = simplegui.create_timer(1000.0, rock_spawner)
+timer = simplegui.create_timer(3000.0, rock_spawner)
 
 # get things rolling
 timer.start()
