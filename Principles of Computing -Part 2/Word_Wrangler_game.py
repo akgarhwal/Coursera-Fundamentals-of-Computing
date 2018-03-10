@@ -1,3 +1,6 @@
+## __akgarhwal__
+## Link : http://www.codeskulptor.org/#user44_JMECBtskjd_4.py
+
 """
 Student code for Word Wrangler game
 """
@@ -14,10 +17,8 @@ WORDFILE = "assets_scrabble_words3.txt"
 def remove_duplicates(list1):
     """
     Eliminate duplicates in a sorted list.
-
     Returns a new sorted list with the same elements in list1, but
     with no duplicates.
-
     This function can be iterative.
     """
     ans = []
@@ -29,10 +30,8 @@ def remove_duplicates(list1):
 def intersect(list1, list2):
     """
     Compute the intersection of two sorted lists.
-
     Returns a new sorted list containing only elements that are in
     both list1 and list2.
-
     This function can be iterative.
     """
     new_list = list1 + list2
@@ -47,10 +46,8 @@ def intersect(list1, list2):
 def merge(list1, list2):
     """
     Merge two sorted lists.
-
     Returns a new sorted list containing those elements that are in
     either list1 or list2.
-
     This function can be iterative.
     """   
     merge_list = []
@@ -70,9 +67,7 @@ def merge(list1, list2):
 def merge_sort(list1):
     """
     Sort the elements of list1.
-
     Return a new sorted list with the same elements as list1.
-
     This function should be recursive.
     """
     low = 0
@@ -85,25 +80,36 @@ def merge_sort(list1):
     return list1
 
 # Function to generate all strings for the word wrangler game
-
-def gen_all_strings(word):
-    """a
+def perm(letters, word, _len):
+    """ permutaion of string of length _len
+    """
+    if _len == 0:
+        return [word]
+    #print(letters,word,_len)
+    res = []
+    for index in range(len(letters)):
+        temp = perm(letters[:index]+letters[index+1:], word +letters[index],_len-1)
+        res.extend(temp)
+    return res
+def gen_all_strings(letters):
+    """
     Generate all strings that can be composed from the letters in word
     in any order.
-
     Returns a list of all strings that can be formed from the letters
     in word.
-
     This function should be recursive.
     """
-    return ['',word]
+    res = ['']
+    for _len in range(1,len(letters)+1):
+        temp = perm(letters, '', _len)
+        res.extend(temp)
+    return (res)
 
 # Function to load words from a file
 
 def load_words(filename):
     """
     Load word list from the file named filename.
-
     Returns a list of strings.
     """
     words = []
@@ -124,8 +130,6 @@ def run():
     provided.run_game(wrangler)
 
 # Uncomment when you are ready to try the game
-run()
+#run()
 #print(merge([1,2,3],[4,5,6]))
 #print( merge_sort([6,3,5,4,3,2,1]) )
-    
-    
