@@ -59,6 +59,15 @@ def largest_cc_size(ugraph):
 
     return largest_cc
 
+def delete_node(ugraph, node):
+    """
+    Delete a node from an undirected graph
+    """
+    neighbors = ugraph[node]
+    ugraph.pop(node)
+    for neighbor in neighbors:
+        ugraph[neighbor].remove(node)
+
 def compute_resilience(ugraph, attack_order):
     """
         Input : the undirected graph ugraph, a list of nodes attack_order 
@@ -71,10 +80,7 @@ def compute_resilience(ugraph, attack_order):
     resilience.append(largest_cc)
     for attack_node in attack_order:
         ## remove attack_node from ugraph
-        ugraph.pop(attack_node, None)
-        for node in ugraph.keys():
-            ugraph[node].discard(attack_node)
-            
+        delete_node(ugraph, attack_node)
         largest_cc = largest_cc_size(ugraph)
         resilience.append(largest_cc)
     
