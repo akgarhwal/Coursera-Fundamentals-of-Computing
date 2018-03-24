@@ -14,7 +14,7 @@ Some  of the projects are listed below.
 &nbsp&nbsp&nbsp&nbsp  <i><a href="http://www.codeskulptor.org/#user44_aPDpvGAnystO9pT.py"> play game </a></i>
 </li> 
   
-  <li>  <h2><a href="https://en.wikipedia.org/wiki/Minimax"> Min-Max Tic-Tac-Toe Player</a></h2> <i><a href="https://github.com/akgarhwal/Coursera-Fundamentals-of-Computing/blob/master/Principles%20of%20Computing%20-Part%202/tic_tac_toe_MIN_MAX.py">source code</a></i>&nbsp&nbsp&nbsp&nbsp  <i><a href="http://www.codeskulptor.org/#user44_aPDpvGAnystO9pT.py"> play game </a></i>
+  <li>  <h2><a href="https://en.wikipedia.org/wiki/Minimax"> Min-Max Tic-Tac-Toe Player</a></h2> <i><a href="https://github.com/akgarhwal/Coursera-Fundamentals-of-Computing/blob/master/Principles%20of%20Computing%20-Part%202/tic_tac_toe_MIN_MAX.py">source code</a></i>&nbsp&nbsp&nbsp&nbsp  <i><a href="http://www.codeskulptor.org/#user44_phcxKL906m_33.py"> play game </a></i>
 </li> 
 
  <li>  <h2><a href="https://en.wikipedia.org/wiki/Tic-tac-toe"> Monte Carlo Tic-Tac-Toe Player </a></h2> <i><a href="https://github.com/akgarhwal/Coursera-Fundamentals-of-Computing/blob/master/Principles%20of%20Computing%20-Part%201/game_TIC_TAC_TOE.py">source code</a></i> &nbsp&nbsp&nbsp&nbsp  <i><a href="http://www.codeskulptor.org/#user44_WQ2XxBuh4LlGQyE_0.py"> play game </a></i></li>  
