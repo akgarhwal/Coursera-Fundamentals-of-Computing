@@ -2,11 +2,15 @@
 I started Fundamentals of Computing Specialization to learn python. During this specialization I developed more than 20 fun projects.
 Some  of the projects are listed below.
 <ol>
-  <li>  <h2><a href="https://en.wikipedia.org/wiki/Pong"> Pong </a></h2> <i><a href="https://github.com/akgarhwal/Coursera-Fundamentals-of-Computing/blob/master/An%20Introduction%20to%20Interactive%20Programming%20in%20Python%20-Part%201/pong.py">source code</a></i>&nbsp&nbsp&nbsp&nbsp  <i><a href="http://www.codeskulptor.org/#user44_OIodC3QHbGmVlX5.py"> play game </a></i>
-  </li>
   
   <li>  <h2>Space Ship</h2> <i><a href="https://github.com/akgarhwal/Coursera-Fundamentals-of-Computing/blob/master/An%20Introduction%20to%20Interactive%20Programming%20in%20Python%20-Part%202/Space_ship_part_2.py">source code</a></i>&nbsp&nbsp&nbsp&nbsp  <i><a href="http://www.codeskulptor.org/#user44_XpCzRsDYz3toI9W.py"> play game </a></i>
-</li> 
+</li>
+
+<li>  <h2><a href="https://en.wikipedia.org/wiki/15_puzzle"> The Fifteen Puzzle Solver</a></h2> <i><a href="https://github.com/akgarhwal/Coursera-Fundamentals-of-Computing/blob/master/Principles%20of%20Computing%20-Part%202/The_Fifteen_Puzzle.py">source code</a></i>&nbsp&nbsp&nbsp&nbsp  <i><a href="http://www.codeskulptor.org/#user44_mF3gkBhvCL_71.py"> play game </a></i>
+  </li>
+
+ <li>  <h2><a href="https://en.wikipedia.org/wiki/Pong"> Pong </a></h2> <i><a href="https://github.com/akgarhwal/Coursera-Fundamentals-of-Computing/blob/master/An%20Introduction%20to%20Interactive%20Programming%20in%20Python%20-Part%201/pong.py">source code</a></i>&nbsp&nbsp&nbsp&nbsp  <i><a href="http://www.codeskulptor.org/#user44_OIodC3QHbGmVlX5.py"> play game </a></i>
+  </li>
   
   <li>  <h2><a href="https://en.wikipedia.org/wiki/2048_(video_game)"> 2048 Game </a></h2> <i><a href="https://github.com/akgarhwal/Coursera-Fundamentals-of-Computing/blob/master/Principles%20of%20Computing%20-Part%201/game_2048.py">source code</a></i>&nbsp&nbsp&nbsp&nbsp  <i><a href="http://www.codeskulptor.org/#user44_1DcmASKi8e5Upnu.py"> play game </a></i></li> 
   
