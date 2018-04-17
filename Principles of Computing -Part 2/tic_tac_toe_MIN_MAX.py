@@ -45,7 +45,7 @@ def mm_move(board, player):
     else:
         score = 2
     empty_square = _board.get_empty_squares()
-    _fin_move = None
+    final_move = None
     
     for _move in empty_square:
         __board = _board.clone()
@@ -54,13 +54,13 @@ def mm_move(board, player):
         if player == provided.PLAYERX:
             if score < result[0] :
                 score = max(score,result[0])
-                _fin_move = _move
+                final_move = _move
         else:
             if score > result[0] :
                 score = min(score,result[0])
-                _fin_move = _move
+                final_move = _move
                 
-    return score, _fin_move
+    return score, final_move
 
 def move_wrapper(board, player, trials):
     """
